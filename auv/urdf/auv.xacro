@@ -1,0 +1,611 @@
+<?xml version="1.0"?>
+ <robot name="auv" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+
+
+
+<!-- Base link -->
+  <link name="base_link">
+   <visual>
+<origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+     <cylinder length="0.2" radius="0.6"/> 
+    </geometry>
+   </visual>
+<!--Base collision,mass and inertia -->
+ <collision>
+   <origin xyz="0 0 0" rpy="0.22"/>
+   <geometry>
+     <cylinder length="0.3" radius="0.7" />
+   </geometry>
+  </collision>
+  <inertial>
+  <mass value="2"/>
+  <inertia ixx="0.186" ixy="0.0" ixz="0.0" iyy="0.186" iyz="0.0" izz="0.36"/>
+  </inertial>
+  </link>
+
+
+
+ 
+<!--Head base -->
+ <link name="head_base">
+ <visual>
+  <origin xyz="0 0 0.21" rpy="0 0 0"/>
+    <geometry>
+      <cylinder length="0.2" radius="0.2"/>
+    </geometry>
+ </visual>
+ </link>
+ <joint name="base_to_head" type="fixed">
+  <parent link="base_link"/>
+  <child link="head_base"/>
+ </joint>
+
+<!-- Head -->
+ <link name="head">
+   <visual> 
+    <geometry>
+     <sphere radius="0.2"/>
+    </geometry>
+   <material name="white">
+   <color rgba="1 1 1 1"/>
+   </material>
+   </visual>
+   </link>
+<joint name="head_camera" type="fixed">
+   <parent link="base_link"/>
+   <child link="head"/>
+   <origin xyz="0 0 0.3"/>
+   </joint> 
+
+<!-- sphere base -->
+<link name="sphere_base">
+ <visual>
+  <geometry>
+   <box size="0.1 0.1 -0.1"/>
+  </geometry>
+  <material name="red">
+  <color rgba="1 0 0 1"/>
+  </material>
+  </visual>
+  </link>
+<joint name="base_for_sphere" type="fixed">
+   <parent link="base_link" />
+   <child link="sphere_base"/>
+   <origin xyz="-0.55 0 -0.1"/>
+ </joint>
+
+
+<!-- sphere to keep the base in water -->
+<link name="sphere">
+   <visual> 
+    <geometry>
+     <sphere radius="0.03"/>
+    </geometry>
+   <material name="red">
+   <color rgba="1 0 0 1"/>
+   </material>
+   </visual>
+   
+<!-- sphere mass Collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy=" 0 0 0"/>
+			<geometry>
+				 <sphere radius="0.03"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="0.001"/>
+      	<inertia ixx="3e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="5e-06"/>
+    	</inertial>
+	</link>
+<joint name="base_sphere" type="fixed">
+   <parent link="base_link"/>
+   <child link="sphere"/>
+   <origin xyz="-0.55 0 -0.05"/>
+   </joint> 
+
+<!-- sphere2 base -->
+<link name="sphere2_base">
+ <visual>
+  <geometry>
+   <box size="0.1 0.1 -0.1"/>
+  </geometry>
+  <material name="red">
+  <color rgba="1 0 0 1"/>
+  </material>
+  </visual>
+  </link>
+<joint name="base_for_sphere2" type="fixed">
+   <parent link="base_link" />
+   <child link="sphere2_base"/>
+   <origin xyz="0.55 0 -0.1"/>
+ </joint>
+
+<!-- sphere to keep the base in water -->
+<link name="sphere2">
+   <visual> 
+    <geometry>
+     <sphere radius="0.03"/>
+    </geometry>
+   <material name="white">
+   <color rgba="1 1 1 1"/>
+   </material>
+   </visual>
+   
+<!-- sphere mass Collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy=" 0 0 0"/>
+			<geometry>
+				 <sphere radius="0.03"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="0.1"/>
+      	<inertia ixx="3e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="5e-06"/>
+    	</inertial>
+	</link>
+<joint name="base_sphere2" type="fixed">
+   <parent link="base_link"/>
+   <child link="sphere2"/>
+   <origin xyz="0.55 0 -0.05"/>
+   </joint> 
+<!-- sphere3 base -->
+<link name="sphere3_base">
+ <visual>
+  <geometry>
+   <box size="0.1 0.1 -0.1"/>
+  </geometry>
+  <material name="red">
+  <color rgba="1 0 0 1"/>
+  </material>
+  </visual>
+  </link>
+<joint name="base_for_sphere3" type="fixed">
+   <parent link="base_link" />
+   <child link="sphere3_base"/>
+   <origin xyz="0 0.55 -0.1"/>
+ </joint>
+
+<!-- sphere to keep the base in water -->
+<link name="sphere3">
+   <visual> 
+    <geometry>
+     <sphere radius="0.03"/>
+    </geometry>
+   <material name="white">
+   <color rgba="1 1 1 1"/>
+   </material>
+   </visual>
+   
+<!-- sphere mass Collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy=" 0 0 0"/>
+			<geometry>
+				 <sphere radius="0.03"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="0.1"/>
+      	<inertia ixx="3e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="5e-06"/>
+    	</inertial>
+	</link>
+<joint name="base_sphere3" type="fixed">
+   <parent link="base_link"/>
+   <child link="sphere3"/>
+   <origin xyz="0 0.55 -0.05"/>
+   </joint> 
+
+
+<!-- sphere4 base -->
+<link name="sphere4_base">
+ <visual>
+  <geometry>
+   <box size="0.1 0.1 -0.1"/>
+  </geometry>
+  <material name="red">
+  <color rgba="1 0 0 1"/>
+  </material>
+  </visual>
+  </link>
+<joint name="base_for_sphere4" type="fixed">
+   <parent link="base_link" />
+   <child link="sphere4_base"/>
+   <origin xyz="0 -0.55 -0.1"/>
+ </joint>
+
+<!-- sphere to keep the base in water -->
+<link name="sphere4">
+   <visual> 
+    <geometry>
+     <sphere radius="0.03"/>
+    </geometry>
+   <material name="white">
+   <color rgba="1 1 1 1"/>
+   </material>
+   </visual>
+   
+<!-- sphere mass Collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy=" 0 0 0"/>
+			<geometry>
+				 <sphere radius="0.03"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="0.1"/>
+      	<inertia ixx="3e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="5e-06"/>
+    	</inertial>
+	</link>
+<joint name="base_sphere4" type="fixed">
+   <parent link="base_link"/>
+   <child link="sphere4"/>
+   <origin xyz="0 -0.55 -0.05"/>
+   </joint>
+
+
+
+ 
+
+
+<!-- propele -->
+	<link name="propele">
+		<visual>
+			<origin xyz="0 0 0" rpy=" 1.570795 0 0"/>
+			<geometry>
+				<cylinder length="0.05" radius="0.15"/>
+			</geometry>
+			<material name="white">
+                        <color rgba="1 1 1 1"/>
+                </material>
+		</visual>
+<!-- propeles mass Collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy=" 1.570795 0 0"/>
+			<geometry>
+				 <cylinder length="0.05" radius="0.15"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="0.001"/>
+      	<inertia ixx="3e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="5e-06"/>
+    	</inertial>
+	</link>
+<!-- propeles Joint -->
+	<joint name="joint_propele" type="continuous">
+		<parent link="base_link"/>
+		<child link="propele"/>
+		<origin xyz="0 0.625 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="100" velocity="100"/>
+    	<joint_properties damping="0.0" friction="0.0"/>
+	</joint>
+
+
+<!-- propele 2 -->
+<link name="propele2">
+		<visual>
+			<origin xyz="0 0 0" rpy=" 1.570795 0 0"/>
+			<geometry>
+				<cylinder length="0.05" radius="0.15"/>
+			</geometry>
+			<material name="white">
+                        <color rgba="1 1 1 1"/>
+                </material>
+		</visual>
+<!-- propeles mass Collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy=" 1.570795 0 0"/>
+			<geometry>
+				 <cylinder length="0.05" radius="0.15"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="0.001"/>
+      	<inertia ixx="3e-06" ixy="0.0" ixz="0.0" iyy="3e-06" iyz="0.0" izz="5e-06"/>
+    	</inertial>
+	</link>
+<!-- propeles Joint -->
+	<joint name="joint_propele2" type="continuous">
+		<parent link="base_link"/>
+		<child link="propele2"/>
+		<origin xyz="0 -0.625 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="100" velocity="100"/>
+    	<joint_properties damping="0.0" friction="0.0"/>
+	</joint>
+
+
+
+
+
+<!-- camera -->
+ <link name="camera">
+   <visual>
+    <geometry>
+      <box size="0.08 0.08 0.08"/>
+    </geometry>
+   <material name="blue">
+   <color rgba="0 0 1 1"/>
+   </material>
+   </visual>
+<!-- Camera collision mass and inertia-->
+ <collision>
+   <geometry>
+     <box size="0.08 0.08 0.08" />
+   </geometry>
+  </collision>
+  <inertial>
+<mass value="0.1"/>
+  <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+  </inertial>
+  </link>
+<joint name="camera_joint" type="fixed">
+   <parent link="base_link"/>
+   <child link="camera"/>
+   <origin xyz="0.15 0 0.4"/>
+ </joint>
+<!-- Camera -->
+<gazebo reference="camera">
+    <material>Gazebo/Red</material>
+    <sensor type="camera" name="camera1">
+      <update_rate>30.0</update_rate>
+      <camera name="head">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>auv/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+
+  <!-- Hokuyo Laser -->
+  <link name="hokuyo_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.00001 0.00001 0.0001"/>
+        <mesh filename="package://auv/meshes/hokuyo.dae"/>
+      </geometry>
+    <material name="blue">
+    <color rgba="0 0 1 1"/>
+    </material>
+    </visual>
+  
+  <!-- Collision, Inertial Hokuyo Laser -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+   <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+    </link>
+ 
+
+  <!-- Joint Hokuyo Laser -->
+  <joint name="hokuyo_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.15 0 0.4" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="hokuyo_link"/>
+  </joint>  
+
+  <!-- hokuyo -->
+  <gazebo reference="hokuyo_link">
+   <material>Gazebo/Blue</material>
+    <turnGravityOff>false</turnGravityOff>
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.570796</min_angle>
+            <max_angle>1.570796</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>220.0</max>  <!--or 30 -->
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>hokuyo_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo> 
+
+<!-- object_contoller_plugin -->
+
+ <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>
+
+
+<!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/auv</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+ <!-- Differential drive controller  -->
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>false</publishWheelTF>
+      <robotNamespace>auv</robotNamespace>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>false</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100.0</updateRate>
+      <rightJoint>joint_propele</rightJoint>
+      <leftJoint>joint_propele2</leftJoint>
+      <wheelDiameter>0.2</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>30</wheelTorque>
+      <wheelAcceleration>1.8</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame> 
+      <odometryTopic>odom</odometryTopic> 
+      <robotBaseFrame>base_link</robotBaseFrame>
+
+
+    </plugin>
+  </gazebo>
+
+<!-- buyancy plugin -->
+   <gazebo>
+        <plugin name="buoyancy_auv" filename="libBuoyancyPlugin.so">
+          <fluid_density>1200</fluid_density>
+	<link name="base_link">
+    </link>
+        </plugin>
+    </gazebo>
+
+
+<!-- Transmission -->
+    <transmission name="transmission1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_propele">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor1">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+   
+     <transmission name="transmission2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_propele2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+   
+ 
+  
+
+ 
+
+<gazebo reference="base_link">
+ <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="head_base">
+ <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="head">
+ <material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="camera">
+ <material>Gazebo/Blue</material>
+</gazebo>
+<gazebo reference="propele">
+      <mu1 value="0.01"/>
+      <mu2 value="0.01"/>
+      <kp  value="10000000.0" />
+      <kd  value="1.0" />
+      <fdir1 value="1 0 0"/>
+      <material>Gazebo/White</material>
+      <turnGravityOff>false</turnGravityOff>
+ </gazebo>
+
+
+<gazebo reference="propele2">
+      <mu1 value="0.01"/>
+      <mu2 value="0.01"/>
+      <kp  value="10000000.0" />
+      <kd  value="1.0" />
+      <fdir1 value="1 0 0"/>
+      <material>Gazebo/White</material>
+      <turnGravityOff>false</turnGravityOff>
+ </gazebo>
+
+<gazebo reference="sphere_base">
+  <material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="sphere2_base">
+  <material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="sphere">
+  <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="sphere2">
+  <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="sphere3_base">
+  <material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="sphere4_base">
+  <material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="sphere3">
+  <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="sphere4">
+  <material>Gazebo/Red</material>
+</gazebo>
+
+
+</robot>
+
+
+
+
+
+

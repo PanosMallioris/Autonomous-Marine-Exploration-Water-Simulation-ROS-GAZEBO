@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+ <robot name="auv" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+<!-- Base link -->
+  <link name="base_link">
+   <visual>
+<origin xyz="0 0 0" rpy="0 0 0" />
+    <geometry>
+     <cylinder length="0.2" radius="0.6"/> 
+    </geometry>
+   </visual>
+<!--Base collision,mass and inertia -->
+ <collision>
+   <origin xyz="0 0 0" rpy="0.22"/>
+   <geometry>
+     <cylinder length="0.3" radius="0.7" />
+   </geometry>
+  </collision>
+  <inertial>
+  <mass value="3.4"/>
+  <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+  </inertial>
+  </link>
+
+<!-- Caster -->
+   		<link name="caster">
+                <visual>
+      		<geometry>
+       			 <sphere radius="0.08"/>
+      		</geometry>
+                <material name="white">
+                <color rgba="1 1 1 1"/>
+                </material>
+	        </visual>
+	<!-- Caster Collision, Inertial -->
+		<collision>
+			<geometry>
+				 <sphere radius="0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+      		<mass value="0.05"/>
+      	<inertia ixx="0.00005" ixy="0.0" ixz="0.0" iyy="0.00005" iyz="0.0" izz="0.00005"/>
+    	</inertial>
+        </link>
+         <joint name="robots_caster" type="fixed">
+		<parent link="base_link"/>
+		<child link="caster"/>
+		<origin xyz="-0.5 0 -0.18" rpy="0 0 0"/>
+	</joint>
+
+<!-- Caster2 -->
+   		<link name="caster2">
+                <visual>
+      		<geometry>
+       			 <sphere radius="0.08"/>
+      		</geometry>
+                <material name="white">
+                <color rgba="1 1 1 1"/>
+                </material>
+	        </visual>
+	<!-- Caster Collision, Inertial -->
+		<collision>
+			<geometry>
+				 <sphere radius="0.08"/>
+			</geometry>
+		</collision>
+		<inertial>
+      		<mass value="0.05"/>
+      	<inertia ixx="0.00005" ixy="0.0" ixz="0.0" iyy="0.00005" iyz="0.0" izz="0.00005"/>
+    	</inertial>
+        </link>
+         <joint name="robots_caster2" type="fixed">
+		<parent link="base_link"/>
+		<child link="caster2"/>
+		<origin xyz="0.5 0 -0.18" rpy="0 0 0"/>
+	</joint>
+
+
+	<!-- Both Legs -->
+	<link name="both_legs">
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.1 1.2 0.2"/>
+			</geometry>
+			<material name="white">
+                        <color rgba="1 1 1 1"/>
+                </material>
+                        			
+		</visual>
+	<!-- Both Legs collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 1.2 0.2"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="1"/>
+      <inertia ixx="0.004" ixy="0.0" ixz="0.0" iyy="0.004" iyz="0.0" izz="0.003"/>
+    </inertial>
+	</link>
+	<!-- Both Legs Joint -->
+	<joint name="base_to_both_legs" type="fixed">
+		<parent link="base_link"/>
+		<child link="both_legs"/>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+	</joint>
+
+<!-- Right_wheel -->
+	<link name="right_wheel">
+		<visual>
+			<origin xyz="0 0 0" rpy="1.570795 0 0"/>
+			<geometry>
+				<cylinder length="0.15" radius="0.25"/>
+			</geometry>
+			<material name="white">
+                        <color rgba="1 1 1 1"/>
+                </material>
+		</visual>
+	<!-- Right Wheel Collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy="1.570795 0 0"/>
+			<geometry>
+				 <cylinder length="0.15" radius="0.25"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="0.5"/>
+      	<inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.05"/>
+    	</inertial>
+	</link>
+	<!-- Right_wheel Joint -->
+	<joint name="joint_right_wheel" type="continuous">
+		<parent link="both_legs"/>
+		<child link="right_wheel"/>
+		<origin xyz="0 0.65 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="100" velocity="100"/>
+    	<joint_properties damping="0.0" friction="0.0"/>
+	</joint>
+
+	<!-- Left_wheel -->
+	<link name="left_wheel">
+		<visual>
+			<origin xyz="0 0 0" rpy="1.570795 0 0"/>
+			<geometry>
+				<cylinder length="0.15" radius="0.25"/>
+			</geometry>
+			<material name="white">
+                        <color rgba="1 1 1 1"/>
+                </material>
+		</visual>
+	<!-- Left Wheel Collision, Inertial -->
+		<collision>
+			<origin xyz="0 0 0" rpy="1.570795 0 0"/>
+			<geometry>
+				 <cylinder length="0.15" radius="0.25"/>
+			</geometry>
+		</collision>
+		<inertial>
+ 	    	<mass value="0.5"/>			
+	      	<inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.005" iyz="0.0" izz="0.05"/>
+    	</inertial>
+	</link>
+	<!-- Left_wheel Joint -->
+	<joint name="joint_left_wheel" type="continuous">
+		<parent link="both_legs"/>
+		<child link="left_wheel"/>
+		<origin xyz="0 -0.65 0" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="100" velocity="100"/>
+        <joint_properties damping="0.0" friction="0.0"/>
+	</joint>
+
+
+ 
+<!--Head base -->
+ <link name="head_base">
+ <visual>
+  <origin xyz="0 0 0.21" rpy="0 0 0"/>
+    <geometry>
+      <cylinder length="0.2" radius="0.2"/>
+    </geometry>
+ </visual>
+ </link>
+ <joint name="base_to_head" type="fixed">
+  <parent link="base_link"/>
+  <child link="head_base"/>
+ </joint>
+
+<!-- Head -->
+ <link name="head">
+   <visual> 
+    <geometry>
+     <sphere radius="0.2"/>
+    </geometry>
+   <material name="white">
+   <color rgba="1 1 1 1"/>
+   </material>
+   </visual>
+   </link>
+<joint name="head_camera" type="fixed">
+   <parent link="base_link"/>
+   <child link="head"/>
+   <origin xyz="0 0 0.3"/>
+   </joint>
+
+<!-- Hokuyo Laser -->
+  <link name="hokuyo">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://ros_robotics/meshes/hokuyo.dae"/>
+      </geometry>
+    </visual>
+  <!-- Collision, Inertial Hokuyo Laser -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <!-- Joint Hokuyo Laser -->
+  <joint name="hokuyo_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0.15 0 0.1" rpy="0 0 0"/>
+    <parent link="head"/>
+    <child link="hokuyo"/>
+  </joint>
+
+
+<!-- camera -->
+ <link name="camera">
+   <visual>
+    <geometry>
+      <box size="0.08 0.08 0.08"/>
+    </geometry>
+   <material name="blue">
+   <color rgba="0 0 1 1"/>
+   </material>
+   </visual>
+<!-- Camera collision mass and inertia-->
+ <collision>
+   <geometry>
+     <box size="0.09 0.09 0.09" />
+   </geometry>
+  </collision>
+  <inertial>
+  <mass value="0.1"/>
+  <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+  </inertial>
+  </link>
+<joint name="camera_joint" type="fixed">
+   <parent link="head"/>
+   <child link="camera"/>
+   <origin xyz="0.15 0 0.1"/>
+ </joint>
+
+ <!-- TRANSMITION -->
+    <transmission name="transmission1">
+      <type>transmission_interface/SimpleTransmission</type>
+       <joint name="joint_right_wheel" />
+      <actuator name="motor1">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="transmission2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="joint_left_wheel" />
+      <actuator name="motor2">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+
+<gazebo reference="base_link">
+  <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="caster">
+  <material>Gazebo/Black</material>
+</gazebo>
+<gazebo reference="caster2">
+  <material>Gazebo/Black</material>
+</gazebo>
+<gazebo reference="both_legs">
+  <material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="head">
+  <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="head_base">
+  <material>Gazebo/White</material>
+</gazebo>
+<gazebo reference="right_wheel">
+  <material>Gazebo/Black</material>
+</gazebo>
+  <gazebo reference="left_wheel">
+<material>Gazebo/Black</material>
+</gazebo>
+
+</robot>
+
+
+
+
+
