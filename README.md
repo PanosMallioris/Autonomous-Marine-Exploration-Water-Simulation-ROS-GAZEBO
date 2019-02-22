@@ -1,6 +1,6 @@
 # Autonomous Marine Exploration Water Simulation ROS GAZEBO
 
-To simulate this project follow this instructions:
+To simulate the project follow this instructions:
 
 In a new terminal access your catkin workspace.
 
