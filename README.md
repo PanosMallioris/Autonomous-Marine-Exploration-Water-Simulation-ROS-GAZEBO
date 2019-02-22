@@ -1,1 +1,1 @@
-# Autonomous-Marine-Exploration-Water-Simulation-ROS-GAZEBO
+# Autonomous Marine Exploration Water Simulation ROS GAZEBO
