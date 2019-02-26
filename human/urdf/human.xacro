@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+ <robot name="human" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- main body  -->
+  <link name="main_body">
+   <visual>
+<origin xyz="0 0 1.2" rpy="0 0 0" />
+    <geometry>
+     <box size="0.4 0.15 0.7"/> 
+    </geometry>
+   <material name="green">
+   <color rgba="0 1 0 1"/>
+   </material>
+   </visual>
+
+<!--main body collision,mass and inertia -->
+ <collision>
+   <origin xyz="0 0 1.2" rpy="0 0 0"/>
+   <geometry>
+     <box size="0.43 0.18 0.73"/> 
+   </geometry>
+  </collision>
+  <inertial>
+  <mass value="40"/>
+  <inertia ixx="0.4" ixy="0.0" ixz="0.0" iyy="0.4" iyz="0.0" izz="0.2"/>
+  </inertial>
+  </link>
+
+ <!-- head  -->
+  <link name="head">
+   <visual>
+<origin xyz="0 0 1.9" rpy="0 0 0" />
+    <geometry>
+     <sphere radius="0.2"/> 
+    </geometry>
+   <material name="siena">
+   <color rgba="0.6274 0.3215 0.1764 1"/>
+   </material>
+   </visual>
+ </link>
+<joint name="humans_head" type="fixed">
+   <parent link="main_body"/>
+   <child link="head"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+
+ <!-- legs base   -->
+  <link name="legs_base">
+   <visual>
+<origin xyz="0 0 0.85" rpy="0 0 0" />
+    <geometry>
+     <box size="0.5 0.20 -0.25"/> 
+    </geometry>
+    <material name="blue">
+   <color rgba="0 0 1 1"/>
+   </material>
+   </visual>
+ </link>
+<joint name="humans_legs_base" type="fixed">
+   <parent link="main_body"/>
+   <child link="legs_base"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+
+
+<!-- right leg  -->
+  <link name="right_leg">
+   <visual>
+<origin xyz="0.17 0 0.3625" rpy="0 0 0" />
+    <geometry>
+     <box size="0.15 0.15 0.725 "/> 
+    </geometry>
+    <material name="blue">
+   <color rgba="0 0 1 1"/>
+   </material>
+   </visual>
+  </link>
+<joint name="humans_right_leg" type="fixed">
+   <parent link="main_body"/>
+   <child link="right_leg"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+
+
+
+<!-- left leg  -->
+  <link name="left_leg">
+   <visual>
+<origin xyz="-0.18 0 0.3625" rpy="0 0 0" />
+    <geometry>
+     <box size="0.15 0.15 0.725"/> 
+    </geometry>
+   <material name="blue">
+   <color rgba="0 0 1 1"/>
+   </material>
+   </visual>
+ </link>
+<joint name="humans_left_leg" type="fixed">
+   <parent link="main_body"/>
+   <child link="left_leg"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+<!-- hands base   -->
+  <link name="hands_base">
+   <visual>
+<origin xyz="0 0 1.55" rpy="0 0 0" />
+    <geometry>
+     <box size="0.6 0.20 -0.10"/> 
+    </geometry>
+    <material name="green">
+   <color rgba="0 1 0 1"/>
+   </material>
+   </visual>
+ </link>
+<joint name="humans_hands_base" type="fixed">
+   <parent link="main_body"/>
+   <child link="hands_base"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+<!-- right hand  -->
+  <link name="right_hand">
+   <visual>
+<origin xyz="0.45 0 1.70" rpy="0 1 0" />
+    <geometry>
+     <box size="0.15 0.15 0.725 "/> 
+    </geometry>
+    <material name="siena">
+   <color rgba="0.6274 0.3215 0.1764 1"/>
+   </material>
+   </visual>
+ </link>
+<joint name="humans_right_hand" type="fixed">
+   <parent link="main_body"/>
+   <child link="right_hand"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+
+<!-- left hand  -->
+  <link name="left_hand">
+   <visual>
+<origin xyz="-0.45 0 1.70" rpy="0 -1 0" />
+    <geometry>
+     <box size="0.15 0.15 0.725 "/> 
+    </geometry>
+    <material name="siena">
+   <color rgba="0.6274 0.3215 0.1764 1"/>
+   </material>
+   </visual>
+ </link>
+<joint name="humans_left_hand" type="fixed">
+   <parent link="main_body"/>
+   <child link="left_hand"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+
+<!-- right shoe  -->
+  <link name="right_shoe">
+   <visual>
+<origin xyz="0.17 0.1 0" rpy="0 0 0" />
+    <geometry>
+     <box size="0.15 0.35 0.10 "/> 
+    </geometry>
+    <material name="red">
+   <color rgba="1 0 0 1"/>
+   </material>
+   </visual>
+</link>
+<joint name="humans_right_shoe" type="fixed">
+   <parent link="main_body"/>
+   <child link="right_shoe"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+<!-- left shoe  -->
+  <link name="left_shoe">
+   <visual>
+<origin xyz="-0.17 0.1 0" rpy="0 0 0" />
+    <geometry>
+     <box size="0.15 0.35 0.10 "/> 
+    </geometry>
+    <material name="red">
+   <color rgba="1 0 0 1"/>
+   </material>
+   </visual>
+  </link>
+<joint name="humans_left_shoe" type="fixed">
+   <parent link="main_body"/>
+   <child link="left_shoe"/>
+   <origin xyz="0 0 0"/>
+   </joint>
+
+<gazebo reference="main_body">
+ <material>Gazebo/Green</material>
+</gazebo>
+<gazebo reference="legs_base">
+ <material>Gazebo/Blue</material>
+</gazebo>
+<gazebo reference="head">
+<material>Gazebo/Brown</material>
+</gazebo>
+<gazebo reference="right_leg">
+ <material>Gazebo/Blue</material>
+</gazebo>
+<gazebo reference="left_leg">
+ <material>Gazebo/Blue</material>
+</gazebo>
+<gazebo reference="right_hand">
+ <material>Gazebo/Brown</material>
+</gazebo>
+<gazebo reference="left_hand">
+ <material>Gazebo/Brown</material>
+</gazebo>
+<gazebo reference="right_shoe">
+ <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="left_shoe">
+ <material>Gazebo/Red</material>
+</gazebo>
+<gazebo reference="hands_base">
+ <material>Gazebo/Green</material>
+</gazebo>
+
+
+
+
+
+</robot>
