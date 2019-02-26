@@ -59,6 +59,55 @@ instead.
 
 
 
+# Object Recognition
+
+To implement object recognition you will have to download some extra packages
+in a new terminal
+
+# $ sudo apt-get install ros-kinetic-uvc-camera
+
+# $ sudo apt-get install ros-kinetic-find-object-2d
+
+# $ cd catkin_ws/src
+
+# $ git clone https://github.com/ros-autom/find-object.git
+
+# $ cd ..
+
+# $ catkin_make
+
+If the catkin_make is successful in a new terminal we will run the object recognition nodes
+
+# $ roscore
+
+# $ rosrun uvc_camera uvc_camera_node
+
+in a new terminal
+
+# $ rosrun find_object_2d find_object_2d image:=image_raw
+
+This is the application for the object recognition that subscribes on your laptops camera. 
+You can add and choose objects for recognition
+
+# For the simulation 
+
+if you want to recognize the human you will have to spawn the human in the map
+
+# $ roslaunch human spawn_human.launch
+
+and change the camera subscription to vessel's camera this time
+
+So you will have to run this instead 
+
+# $ rosrun find_object_2d find_object_2d image:=auv/camera1/image_raw
+
+Note that in order to recognize the human you have to add his picture first.
+So add the human.png from auv/map to your find object application
+
+
+
+
+
 
 
 
