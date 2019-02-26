@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+<arg name="x" default="8.5679"/>
+<arg name="y" default="1.54789"/>
+<arg name="z" default="53"/>
+<arg name="roll" default="0"/>
+<arg name="pitch" default="0"/>
+<arg name="yaw" default="0"/>
+<arg name="urdf_robot_file" default="$(find human)/urdf/human.xacro"/>
+<arg name="robot_name" default="human"/>
+
+
+<include file="$(find human)/launch/spawn_human_urdf.launch">
+<arg name="x" default="$(arg x)"/>
+<arg name="y" default="$(arg y)"/>
+<arg name="z" default="$(arg z)"/>
+<arg name="roll" default="$(arg roll)"/>
+<arg name="pitch" default="$(arg pitch)"/>
+<arg name="yaw" default="$(arg yaw)"/>
+<arg name="urdf_robot_file" value="$(arg urdf_robot_file)" />
+<arg name="robot_name" value="$(arg robot_name)" />
+</include>
+
+</launch>
