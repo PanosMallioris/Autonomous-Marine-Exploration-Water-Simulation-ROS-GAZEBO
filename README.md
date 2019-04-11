@@ -4,10 +4,10 @@ To simulate the project follow this instructions:
 
 In a new terminal access your catkin workspace.
 
-`$ cd catkin_ws/src`
-`$ git clone https://github.com/PanosMallioris/Autonomous-Marine-Exploration-Water-Simulation-ROS-GAZEBO.git`
-`$ cd ..`
-`$ catkin_make`
+# $ cd catkin_ws/src
+# $ git clone https://github.com/PanosMallioris/Autonomous-Marine-Exploration-Water-Simulation-ROS-GAZEBO.git
+# $ cd ..
+# $ catkin_make
 
 If the catkin make is successfull proceed.
 
